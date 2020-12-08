@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+aiohttp = "*"
+pdfkit-async = "*"
+bs4 = "*"
+lxml = "*"
+
+[dev-packages]
+aiohttp-devtools = "*"
+
+[requires]
+python_version = "3.9"
