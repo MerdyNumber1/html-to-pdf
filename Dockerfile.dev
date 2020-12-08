@@ -1,0 +1,10 @@
+FROM python:3.9
+
+WORKDIR /usr/src/app/
+COPY ./src .
+
+RUN pip install -U pipenv
+
+RUN pipenv install --dev
+
+CMD ["pipenv", "run", "dev"]

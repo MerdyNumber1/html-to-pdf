@@ -1,7 +1,7 @@
 import pdfkit
 from aiohttp import web
 
-from services import format_html_for_pdf, change_img_sources_to_base64
+from src.services import format_html_for_pdf, change_img_sources_to_base64
 
 
 headers = {
