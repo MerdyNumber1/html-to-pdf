@@ -6,3 +6,12 @@ dev:
 
 dev-down:
 	docker-compose --file docker-compose.dev.yml down
+
+prod-build:
+	docker-compose --file docker-compose.prod.yml build
+
+prod:
+	docker-compose --file docker-compose.prod.yml up
+
+prod-down:
+	docker-compose --file docker-compose.prod.yml down

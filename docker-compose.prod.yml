@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  converter:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    env_file:
+      - .env
+    volumes:
+      - ./:/usr/src/app/
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+  nginx:
+    image: nginx
+    env_file:
+      - .env
+    ports:
+      - ${NGINX_PORT}:${NGINX_PORT}
+    command: /bin/bash -c "envsubst < /etc/nginx/nginx.template.conf > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
+    volumes:
+      - ./containers/nginx/conf/nginx.template.conf:/etc/nginx/nginx.template.conf
+      - ./logs/:/var/log/nginx/
