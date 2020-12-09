@@ -1,9 +1,10 @@
 FROM python:3.9
 
 WORKDIR /usr/src/app/
-COPY ./src .
+COPY . .
 
-RUN pip install -U pipenv
+RUN pip3 install pipenv
+RUN apt update && apt upgrade -y && apt install wkhtmltopdf -y
 
 RUN pipenv install --dev
 

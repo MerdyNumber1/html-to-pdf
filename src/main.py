@@ -24,7 +24,7 @@ async def handle_pdf_request(request):
 
         pdf_blob = await convert_html_to_pdf(req['html'])
 
-        logger.info(f'{round(time() - start_time, 2)} sec. - {len(req["html"])} tables')
+        logger.info(f'{round(time() - start_time, 2)} sec. - {len(req["html"])} page(s)')
         logger.info('---- END OF REQUEST -----')
 
         return web.Response(body=pdf_blob, headers=headers)

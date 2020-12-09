@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [scripts]
-dev = "adev runserver src"
+dev = "adev runserver src --host $APP_HOST --port $APP_PORT"
 
 [packages]
 aiohttp = "*"
@@ -12,6 +12,7 @@ pdfkit-async = "*"
 bs4 = "*"
 lxml = "*"
 loguru = "*"
+aiohttp-devtools = "*"
 
 [dev-packages]
 aiohttp-devtools = "*"

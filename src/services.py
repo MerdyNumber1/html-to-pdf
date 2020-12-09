@@ -14,8 +14,8 @@ async def get_img_content(session, img):
 
 def format_html_for_pdf(html_pages):
     html = "<meta charset='utf-8' />"
-    for page in html_pages:
-        html += f'<div style="page-break-before: always;">{page}</div>'
+    for i, page in enumerate(html_pages):
+        html += f'<div style="page-break-after: always;">{page}</div>' if i < len(html_pages) - 1 else page
     return html
 
 
@@ -27,9 +27,9 @@ async def change_img_sources_to_base64(html, retries):
             start_time = time()
             for i in range(retries):
                 try:
-                    logger.info('ConnectionClose - retrying to get image')
                     img_content, image_type = await get_img_content(session, img)
                 except ClientError:
+                    logger.info('ConnectionClose - retrying to get image')
                     continue
                 else:
                     logger.info(f'{round(time() - start_time, 2)} sec. - get image content {img["src"]}')
