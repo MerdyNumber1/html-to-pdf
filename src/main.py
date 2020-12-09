@@ -1,8 +1,9 @@
-import pdfkit
 from aiohttp import web
+from src.services import convert_html_to_pdf
+from loguru import logger
+from time import time
 
-from src.services import format_html_for_pdf, change_img_sources_to_base64
-
+logger.add('logs/out.log')
 
 headers = {
     'Access-Control-Allow-Origin': '*',
@@ -16,16 +17,19 @@ async def handle_pdf_request(request):
 
     req = await request.json()
 
-    # reformat to valid html for converter
-    pdf_html = format_html_for_pdf(req['html'])
+    if req and len(req['html']):
 
-    # change src in img to base64 - can raise ConnectionError if put raw link to converter
-    pdf_html = await change_img_sources_to_base64(pdf_html, 10)
+        logger.info('-------- REQUEST --------')
+        start_time = time()
 
-    # convert html to pdf
-    pdf_blob = await pdfkit.from_string(pdf_html, False, options={'quiet': ''})
+        pdf_blob = await convert_html_to_pdf(req['html'])
 
-    return web.Response(body=pdf_blob, headers=headers)
+        logger.info(f'{round(time() - start_time, 2)} sec. - {len(req["html"])} tables')
+        logger.info('---- END OF REQUEST -----')
+
+        return web.Response(body=pdf_blob, headers=headers)
+
+    return web.Response(text='{success: false}', headers=headers)
 
 
 def handle_pdf_options_request(request):

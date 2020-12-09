@@ -11,6 +11,7 @@ aiohttp = "*"
 pdfkit-async = "*"
 bs4 = "*"
 lxml = "*"
+loguru = "*"
 
 [dev-packages]
 aiohttp-devtools = "*"
