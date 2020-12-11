@@ -12,12 +12,11 @@ services:
     ports:
       - ${APP_PORT}:${APP_PORT}
   nginx:
-    image: nginx
+    image: nginx:latest
     env_file:
       - .env
     ports:
       - ${NGINX_PORT}:${NGINX_PORT}
-    command: /bin/bash -c "envsubst < /etc/nginx/nginx.template.conf > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
     volumes:
-      - ./containers/nginx/conf/nginx.template.conf:/etc/nginx/nginx.template.conf
+      - ./containers/nginx/conf:/etc/nginx/templates
       - ./logs/:/var/log/nginx/
