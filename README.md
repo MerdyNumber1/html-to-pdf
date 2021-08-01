@@ -1,7 +1,7 @@
 # Simple API for converting HTML to PDF file
   
 ## How to start:  
-Copy and fill .env.example to .env
+Copy and fill `.env.example` to `.env`
 
 ### Production:
 `docker-compose --file docker-compose.prod.yml up --build`
