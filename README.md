@@ -4,9 +4,9 @@
 Copy and fill .env.example to .env
 
 ### Production:
-docker-compose --file docker-compose.prod.yml up --build
+`docker-compose --file docker-compose.prod.yml up --build`
 ### Development
-docker-compose --file docker-compose.dev.yml up --build
+`docker-compose --file docker-compose.dev.yml up --build`
 
 ## API schema for convert:
 POST-request on `http(s)://host:$APP_PORT/` with body:  
