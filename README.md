@@ -8,7 +8,7 @@ Copy and fill `.env.example` to `.env`
 ### Development
 `docker-compose --file docker-compose.dev.yml up --build`
 
-## API schema for convert:
+## API schema for converting:
 POST-request on `http(s)://host:$APP_PORT/` with body:  
 `{  
   "html": ["<div>page 1</div>", "<div>page 2</div>"]  
